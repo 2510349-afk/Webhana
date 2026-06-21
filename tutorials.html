@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mathematics Hana | هنا الدبس</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <style>
+    /* Tutorials Specific Styles */
+    .page-header {
+      padding: 150px 0 60px;
+      background-color: var(--primary-color);
+      color: var(--white);
+      text-align: center;
+      position: relative;
+    }
+
+    .page-title {
+      font-size: 3rem;
+      margin-bottom: 15px;
+      color: var(--white);
+    }
+    
+    .page-desc {
+      font-size: 1.2rem;
+      color: rgba(255,255,255,0.8);
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .tutorials-section {
+      padding: 60px 0;
+    }
+
+    .tutorials-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 30px;
+    }
+
+    .tutorial-card {
+      background-color: var(--card-bg);
+      border-radius: var(--border-radius);
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+      transition: var(--transition);
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .tutorial-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-hover);
+    }
+
+    .tutorial-thumb {
+      position: relative;
+      width: 100%;
+      padding-top: 56.25%; /* 16:9 Aspect Ratio */
+      background-color: #eee;
+      overflow: hidden;
+    }
+
+    .tutorial-thumb img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+    
+    .tutorial-card:hover .tutorial-thumb img {
+      transform: scale(1.05);
+    }
+
+    .play-icon {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 60px;
+      height: 60px;
+      background-color: rgba(0, 0, 0, 0.6);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 1.5rem;
+      opacity: 0;
+      transition: var(--transition);
+    }
+
+    .tutorial-card:hover .play-icon {
+      opacity: 1;
+    }
+
+    .tutorial-content {
+      padding: 20px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .tutorial-title {
+      font-size: 1.2rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+      line-height: 1.4;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .tutorial-desc {
+      color: var(--text-light);
+      font-size: 0.95rem;
+      margin-bottom: 15px;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      flex: 1;
+    }
+
+    .tutorial-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.85rem;
+      color: var(--text-light);
+      border-top: 1px solid #eee;
+      padding-top: 15px;
+    }
+
+    .read-more-btn {
+      color: var(--secondary-color);
+      font-weight: 600;
+      background: none;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    /* Tutorial Modal specific */
+    .tut-modal-header {
+      margin-bottom: 20px;
+    }
+    .tut-modal-title {
+      font-size: 1.8rem;
+      margin-bottom: 10px;
+    }
+    .tut-modal-date {
+      color: var(--text-light);
+      font-size: 0.9rem;
+    }
+    .tut-modal-img {
+      width: 100%;
+      border-radius: var(--border-radius);
+      margin-bottom: 20px;
+      max-height: 400px;
+      object-fit: cover;
+    }
+    .tut-modal-body {
+      color: var(--text-color);
+      line-height: 1.8;
+    }
+    
+    .tut-modal-body h3 {
+      margin-top: 25px;
+      margin-bottom: 10px;
+    }
+
+    .related-materials {
+      margin-top: 30px;
+      padding: 20px;
+      background-color: var(--bg-color);
+      border-radius: var(--border-radius);
+      border-right: 4px solid var(--accent-color);
+    }
+    html[dir="ltr"] .related-materials {
+      border-right: none;
+      border-left: 4px solid var(--accent-color);
+    }
+    
+    .related-materials h4 {
+      margin-bottom: 15px;
+    }
+    
+    .related-materials ul {
+      list-style-type: disc;
+      margin-inline-start: 20px;
+    }
+    
+    .related-materials li {
+      margin-bottom: 5px;
+    }
+    
+    .related-materials a {
+      color: var(--secondary-color);
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="container">
+      <a href="index.html" class="logo" style="font-size: 1.2rem;">
+        <i class="fa-solid fa-square-root-variable"></i>
+        Mathematics Hana | هنا الدبس
+      </a>
+      
+      <button class="mobile-menu-btn">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+
+      <ul class="nav-links">
+        <li><a href="index.html" data-i18n="nav_home">الرئيسية</a></li>
+        <li><a href="tutorials.html" class="active" data-i18n="nav_tutorials">الشروحات</a></li>
+        <li><a href="courses.html" data-i18n="nav_courses">الدورات</a></li>
+        <li><a href="consultation.html" data-i18n="nav_consultation">حجز استشارة</a></li>
+        <li><a href="#" class="lang-switcher">AR / EN</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Page Header -->
+  <header class="page-header">
+    <div class="container">
+      <h1 class="page-title" data-i18n="tut_page_title">مكتبة الشروحات</h1>
+      <p class="page-desc" data-i18n="tut_page_desc">شروحات مرئية ومقالات مبسطة تغطي مختلف فروع الرياضيات بأسلوب سهل وشيق.</p>
+    </div>
+  </header>
+
+  <!-- Tutorials Section -->
+  <section class="tutorials-section">
+    <div class="container">
+      <div class="tutorials-grid" id="tutorials-container">
+        <!-- Tutorials will be dynamically rendered here by JavaScript -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Tutorial Modal -->
+  <div class="modal-overlay" id="tutorial-modal">
+    <div class="modal-content">
+      <button class="modal-close" id="close-tutorial-modal"><i class="fa-solid fa-times"></i></button>
+      <div id="modal-dynamic-content">
+        <!-- Content injected via JS -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-info">
+          <div class="footer-logo">Mathematics Hana | هنا <span>الدبس</span></div>
+          <p class="footer-desc" data-i18n="footer_desc">أستاذة رياضيات متخصصة في تبسيط المفاهيم الرياضية وجعلها ممتعة ومفهومة لجميع المستويات الأكاديمية.</p>
+          <div class="social-links">
+            <a href="https://www.instagram.com/mathematics_hana?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+            <a href="https://www.facebook.com/profile.php?id=61561058469468" target="_blank"><i class="fa-brands fa-facebook-f"></i></a>
+          </div>
+        </div>
+        
+        <div class="footer-links-col">
+          <h4 class="footer-title" data-i18n="footer_links">روابط سريعة</h4>
+          <ul class="footer-links">
+            <li><a href="index.html" data-i18n="nav_home">الرئيسية</a></li>
+            <li><a href="tutorials.html" data-i18n="nav_tutorials">الشروحات</a></li>
+            <li><a href="courses.html" data-i18n="nav_courses">الدورات</a></li>
+            <li><a href="consultation.html" data-i18n="nav_consultation">حجز استشارة</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-links-col">
+          <h4 class="footer-title" data-i18n="footer_contact">تواصل معنا</h4>
+          <ul class="footer-links">
+            <li><i class="fa-solid fa-envelope" style="color:var(--accent-color); margin: 0 10px;"></i> contact@hana-math.com</li>
+            <li><i class="fa-solid fa-phone" style="color:var(--accent-color); margin: 0 10px;"></i> +000 0000 000</li>
+            <li><i class="fa-solid fa-location-dot" style="color:var(--accent-color); margin: 0 10px;"></i> <span data-i18n="online_sessions">متاح أونلاين حول العالم</span></li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="footer-bottom">
+        <p data-i18n="footer_rights">&copy; 2026 هنا الدبس. جميع الحقوق محفوظة.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/translations.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/tutorials.js"></script>
+</body>
+</html>

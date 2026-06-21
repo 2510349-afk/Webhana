@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mathematics Hana | هنا الدبس</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <style>
+    .page-header {
+      padding: 150px 0 60px;
+      background-color: var(--primary-color);
+      color: var(--white);
+      text-align: center;
+      position: relative;
+    }
+
+    .page-title {
+      font-size: 3rem;
+      margin-bottom: 15px;
+      color: var(--white);
+    }
+    
+    .page-desc {
+      font-size: 1.2rem;
+      color: rgba(255,255,255,0.8);
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .booking-section {
+      padding: 80px 0;
+      position: relative;
+    }
+    
+    .booking-bg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 50%;
+      background-color: var(--primary-color);
+      z-index: -1;
+    }
+
+    .booking-container {
+      display: flex;
+      background-color: var(--white);
+      border-radius: var(--border-radius-lg);
+      box-shadow: var(--shadow-hover);
+      overflow: hidden;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .booking-info {
+      flex: 1;
+      background-color: var(--secondary-color);
+      color: var(--white);
+      padding: 50px 40px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .booking-info::before {
+      content: '∫';
+      position: absolute;
+      bottom: -20px;
+      right: -20px;
+      font-size: 15rem;
+      color: rgba(255,255,255,0.05);
+      font-family: serif;
+    }
+    html[dir="ltr"] .booking-info::before {
+      right: auto;
+      left: -20px;
+    }
+
+    .info-title {
+      font-size: 2rem;
+      margin-bottom: 20px;
+      color: var(--white);
+    }
+
+    .info-desc {
+      margin-bottom: 40px;
+      color: rgba(255,255,255,0.9);
+      line-height: 1.8;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      margin-bottom: 20px;
+      font-size: 1.1rem;
+    }
+
+    .contact-icon {
+      width: 40px;
+      height: 40px;
+      background-color: rgba(255,255,255,0.2);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--accent-color);
+    }
+
+    .booking-form-wrap {
+      flex: 1.5;
+      padding: 50px 40px;
+      background-color: var(--white);
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 600;
+      color: var(--text-color);
+    }
+
+    .form-control {
+      width: 100%;
+      padding: 12px 15px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      font-family: var(--font-main);
+      font-size: 1rem;
+      transition: var(--transition);
+      background-color: #fafafa;
+    }
+
+    .form-control:focus {
+      outline: none;
+      border-color: var(--secondary-color);
+      background-color: var(--white);
+      box-shadow: 0 0 0 3px rgba(8, 126, 139, 0.1);
+    }
+
+    textarea.form-control {
+      resize: vertical;
+      min-height: 120px;
+    }
+
+    .form-row {
+      display: flex;
+      gap: 20px;
+    }
+
+    .form-row .form-group {
+      flex: 1;
+    }
+
+    .error-msg {
+      color: var(--error);
+      font-size: 0.85rem;
+      margin-top: 5px;
+      display: none;
+    }
+    
+    .form-group.has-error .form-control {
+      border-color: var(--error);
+    }
+    
+    .form-group.has-error .error-msg {
+      display: block;
+    }
+
+    .form-submit-btn {
+      width: 100%;
+      padding: 15px;
+      font-size: 1.1rem;
+      margin-top: 10px;
+    }
+
+    .success-message {
+      display: none;
+      text-align: center;
+      padding: 30px;
+      background-color: rgba(42, 157, 143, 0.1);
+      border: 1px solid var(--success);
+      border-radius: var(--border-radius);
+      color: var(--success);
+    }
+
+    .success-message i {
+      font-size: 3rem;
+      margin-bottom: 15px;
+    }
+
+    @media (max-width: 768px) {
+      .booking-container {
+        flex-direction: column;
+      }
+      .form-row {
+        flex-direction: column;
+        gap: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="container">
+      <a href="index.html" class="logo" style="font-size: 1.2rem;">
+        <i class="fa-solid fa-square-root-variable"></i>
+        Mathematics Hana | هنا الدبس
+      </a>
+      
+      <button class="mobile-menu-btn">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+
+      <ul class="nav-links">
+        <li><a href="index.html" data-i18n="nav_home">الرئيسية</a></li>
+        <li><a href="tutorials.html" data-i18n="nav_tutorials">الشروحات</a></li>
+        <li><a href="courses.html" data-i18n="nav_courses">الدورات</a></li>
+        <li><a href="consultation.html" class="active" data-i18n="nav_consultation">حجز استشارة</a></li>
+        <li><a href="#" class="lang-switcher">AR / EN</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Page Header -->
+  <header class="page-header">
+    <div class="container">
+      <h1 class="page-title" data-i18n="consult_page_title">احجز استشارتك</h1>
+      <p class="page-desc" data-i18n="consult_page_desc">سواء كنت تواجه صعوبة في مقرر معين أو ترغب في وضع خطة دراسية للتفوق، أنا هنا لمساعدتك.</p>
+    </div>
+  </header>
+
+  <!-- Booking Section -->
+  <section class="booking-section">
+    <div class="booking-bg"></div>
+    <div class="container">
+      <div class="booking-container fade-in visible">
+        
+        <!-- Info Sidebar -->
+        <div class="booking-info">
+          <h2 class="info-title" data-i18n="consult_direct">تواصل مباشر</h2>
+          <p class="info-desc" data-i18n="consult_info">
+            املأ النموذج المرفق بمعلوماتك وتفاصيل طلبك، وسأقوم بالتواصل معك في أقرب وقت لتحديد الموعد المناسب لجلستنا.
+          </p>
+          
+          <div class="contact-item">
+            <div class="contact-icon"><i class="fa-solid fa-envelope"></i></div>
+            <div>contact@hana-math.com</div>
+          </div>
+          
+          <div class="contact-item">
+            <div class="contact-icon"><i class="fa-solid fa-phone"></i></div>
+            <div>+000 0000 000</div>
+          </div>
+          
+          <div class="contact-item">
+            <div class="contact-icon"><i class="fa-solid fa-location-dot"></i></div>
+            <div data-i18n="online_sessions">جلسات أونلاين عبر Zoom/Meet</div>
+          </div>
+        </div>
+
+        <!-- Booking Form -->
+        <div class="booking-form-wrap">
+          
+          <div id="success-message" class="success-message">
+            <i class="fa-regular fa-circle-check"></i>
+            <h3 data-i18n="success_msg">تم إرسال طلبك بنجاح!</h3>
+            <p data-i18n="success_desc">شكراً لك. سأتواصل معك قريباً لتأكيد الموعد.</p>
+          </div>
+
+          <form id="consultation-form">
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label" for="fullName" data-i18n="form_name">الاسم الكامل *</label>
+                <input type="text" id="fullName" class="form-control" data-i18n-placeholder="placeholder_name" placeholder="أدخل اسمك الكريم">
+                <div class="error-msg" data-i18n="err_name">الرجاء إدخال الاسم الكامل.</div>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="phone" data-i18n="form_phone">رقم الهاتف *</label>
+                <input type="tel" id="phone" class="form-control" data-i18n-placeholder="placeholder_phone" placeholder="رقم الهاتف للتواصل">
+                <div class="error-msg" data-i18n="err_phone">الرجاء إدخال رقم هاتف صحيح.</div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="email" data-i18n="form_email">البريد الإلكتروني *</label>
+              <input type="email" id="email" class="form-control" placeholder="example@email.com">
+              <div class="error-msg" data-i18n="err_email">الرجاء إدخال بريد إلكتروني صحيح.</div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label" for="eduLevel" data-i18n="form_level">المرحلة الدراسية *</label>
+                <select id="eduLevel" class="form-control">
+                  <option value="" disabled selected data-i18n="form_level_select">اختر المرحلة الدراسية</option>
+                  <option value="middle" data-i18n="level_middle">المرحلة المتوسطة / الإعدادية</option>
+                  <option value="high" data-i18n="level_high">المرحلة الثانوية</option>
+                  <option value="university" data-i18n="level_uni">المرحلة الجامعية</option>
+                  <option value="postgrad" data-i18n="level_post">دراسات عليا</option>
+                  <option value="other" data-i18n="level_other">أخرى</option>
+                </select>
+                <div class="error-msg" data-i18n="err_level">الرجاء اختيار المرحلة الدراسية.</div>
+              </div>
+              
+              <div class="form-group">
+                <label class="form-label" for="subject" data-i18n="form_subject">موضوع الاستشارة *</label>
+                <select id="subject" class="form-control">
+                  <option value="" disabled selected data-i18n="subject_select">اختر نوع الطلب</option>
+                  <option value="course_enroll" data-i18n="subject_enroll">التسجيل في دورة</option>
+                  <option value="private_lesson" data-i18n="subject_private">طلب دروس خصوصية</option>
+                  <option value="academic_advice" data-i18n="subject_advice">استشارة أكاديمية وتوجيه</option>
+                  <option value="research_help" data-i18n="subject_research">مساعدة في بحث/دراسات عليا</option>
+                  <option value="other" data-i18n="level_other">أخرى</option>
+                </select>
+                <div class="error-msg" data-i18n="err_subj">الرجاء تحديد موضوع الاستشارة.</div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="notes" data-i18n="form_notes">تفاصيل إضافية</label>
+              <textarea id="notes" class="form-control" data-i18n-placeholder="placeholder_notes" placeholder="اكتب هنا أي تفاصيل إضافية حول طلبك أو الموضوع الذي تواجه صعوبة فيه..."></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary form-submit-btn" data-i18n="btn_submit">إرسال الطلب</button>
+          </form>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-info">
+          <div class="footer-logo">Mathematics Hana | هنا <span>الدبس</span></div>
+          <p class="footer-desc" data-i18n="footer_desc">أستاذة رياضيات متخصصة في تبسيط المفاهيم الرياضية وجعلها ممتعة ومفهومة لجميع المستويات الأكاديمية.</p>
+          <div class="social-links">
+            <a href="https://www.instagram.com/mathematics_hana?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+            <a href="https://www.facebook.com/profile.php?id=61561058469468" target="_blank"><i class="fa-brands fa-facebook-f"></i></a>
+          </div>
+        </div>
+        
+        <div class="footer-links-col">
+          <h4 class="footer-title" data-i18n="footer_links">روابط سريعة</h4>
+          <ul class="footer-links">
+            <li><a href="index.html" data-i18n="nav_home">الرئيسية</a></li>
+            <li><a href="tutorials.html" data-i18n="nav_tutorials">الشروحات</a></li>
+            <li><a href="courses.html" data-i18n="nav_courses">الدورات</a></li>
+            <li><a href="consultation.html" data-i18n="nav_consultation">حجز استشارة</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-links-col">
+          <h4 class="footer-title" data-i18n="footer_contact">تواصل معنا</h4>
+          <ul class="footer-links">
+            <li><i class="fa-solid fa-envelope" style="color:var(--accent-color); margin: 0 10px;"></i> contact@hana-math.com</li>
+            <li><i class="fa-solid fa-phone" style="color:var(--accent-color); margin: 0 10px;"></i> +000 0000 000</li>
+            <li><i class="fa-solid fa-location-dot" style="color:var(--accent-color); margin: 0 10px;"></i> <span data-i18n="online_sessions">متاح أونلاين حول العالم</span></li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="footer-bottom">
+        <p data-i18n="footer_rights">&copy; 2026 هنا الدبس. جميع الحقوق محفوظة.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/translations.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/consultation.js"></script>
+</body>
+</html>
